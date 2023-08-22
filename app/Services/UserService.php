@@ -8,6 +8,8 @@ use App\Http\Requests\AuthRequest;
 use App\Http\Requests\UserRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth as JWTAuth;
 
 class UserService{
     
@@ -28,12 +30,17 @@ class UserService{
     public function loginUser(AuthRequest $request) {
         
         $credentials = $request->only('email', 'password');
+        
+        try {
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return ['message' => 'Credential Not Found','status' => 401];
+            }
 
-        if (!$token = Auth::guard('api')->attempt($credentials)) {
-            return ['message' => 'Credential Not Found','status' => 401];
+            return $this->responseToken($token);
+
+        } catch (JWTException $e) {
+            return ['error' => 'Could not create token', 'status' => 500];
         }
-
-        return $this->responseToken($token);
 
     }
 
@@ -43,7 +50,7 @@ class UserService{
             'status' => 200,
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60
         ];
     }
     

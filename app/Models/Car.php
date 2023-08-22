@@ -9,6 +9,9 @@ class Car extends EloquentModel
 {
     use HasFactory;
 
+    protected $collection = 'mobil';
+    protected $primaryKey = '_id';
+
     protected $fillable = [
         'mesin',
         'kapasitas_penumpang',

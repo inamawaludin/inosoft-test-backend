@@ -13,7 +13,10 @@ class Transaction extends EloquentModel
     protected $primaryKey = '_id';
 
     protected $fillable = [
+        'name',
         'tanggal',
-        'jumlah',
+        'total_item',
+        'total_price',
+        'items'
     ];
 }

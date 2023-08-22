@@ -9,6 +9,9 @@ class MotorBike extends EloquentModel
 {
     use HasFactory;
 
+    protected $collection = 'motor';
+    protected $primaryKey = '_id';
+
     protected $fillable = [
         'mesin',
         'suspensi',
