@@ -18,6 +18,5 @@ class Vehicle extends EloquentModel
         'tahun_keluaran',
         'warna',
         'harga',
-        'stok'
     ];
 }

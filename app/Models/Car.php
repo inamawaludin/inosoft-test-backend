@@ -13,5 +13,7 @@ class Car extends EloquentModel
         'mesin',
         'kapasitas_penumpang',
         'tipe',
+        'stok',
+        'kendaraan'
     ];
 }

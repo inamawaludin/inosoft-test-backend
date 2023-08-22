@@ -13,5 +13,7 @@ class MotorBike extends EloquentModel
         'mesin',
         'suspensi',
         'transmisi',
+        'stok',
+        'kendaraan'
     ];
 }
