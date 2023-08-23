@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
-    Route::post('/login', [AuthController::class,'login']);
-    Route::post('/register', [AuthController::class,'register']);
+    Route::post('/login', [AuthController::class,'login'])->name('v1.login');
+    Route::post('/register', [AuthController::class,'register'])->name('v1.register');
     
-    Route::middleware('jwt.verify')->post('/logout', [AuthController::class,'logout']);
+    Route::middleware('jwt.verify')->post('/logout', [AuthController::class,'logout'])->name('v1.logout');
 
     Route::prefix('/sales')->middleware('jwt.verify')->group(function(){
-        Route::post('/record-sale',[SalesController::class, 'recordSale']);
-        Route::get('/generate-sales-report',[SalesController::class, 'generateSalesReport']);
-        Route::get('/view-stocks',[SalesController::class, 'viewStocks']);
+        Route::post('/record-sale',[SalesController::class, 'recordSale'])->name('v1.sales.create-sale');
+        Route::get('/generate-sales-report',[SalesController::class, 'generateSalesReport'])->name('v1.sales.generate-report');
+        Route::get('/view-stocks',[SalesController::class, 'viewStocks'])->name('v1.sales.view-available-stocks');
     });
 
 
