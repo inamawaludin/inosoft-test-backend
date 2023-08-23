@@ -9,7 +9,7 @@
 
 # Langkah-langkah menjalankan project
 
-- Exstract project ke direktori yang anda inginkan
+- Clone project ke direktori yang anda inginkan
 - Buat database baru yang bernama `inosoft-penjualan-kendaraan`
 - Jalankan command `composer install`
 - Buat file baru yang bernama `.env`
