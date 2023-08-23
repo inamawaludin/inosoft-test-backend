@@ -19,7 +19,7 @@ class CarFactory extends Factory
     {
         
         return [
-                'stok' => $this->faker->randomDigit(),
+                'stok' => $this->faker->numberBetween($min = 10, $max = 100),
                 'mesin' => $this->faker->randomElement(['1000cc', '1500cc', '2000cc','2500cc']),
                 'kapasitas_penumpang' => $this->faker->numberBetween($min = 2, $max = 8),
                 'tipe' => $this->faker->randomElement(['Matic', 'Manual', 'Kopling']),
